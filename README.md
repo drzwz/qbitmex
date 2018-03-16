@@ -1,11 +1,25 @@
-# qbitmex - kdb+/q interface for BitMex API (REST and WebSocket)
+# qbitmex 
+
+kdb+/q interface for BitMex API (REST and WebSocket)
 
 # examples
 
-## 0. settings: apiHost,apiKey,apiSecret
+## 0.1 implementation of HMACSHA256  
+
+For Windows, use qx.dll or build DLLs. For Linux, build shared objects.
+<https://github.com/ogay/hmac>  
+<https://github.com/bitmx/btceQ/blob/master/c/hmac512.cpp>
+
+## 0.2 load the functions
+```q
+\l qbitmex.q
+```
+
+## 0.3 settings: apiHost,apiKey,apiSecret
 ```q
 settings:`apiHost`apiKey`apiSecret!("testnet.bitmex.com";"";"")   //testnet
 ```
+
 ## 1. BitMex REST API (<https://www.bitmex.com/app/restAPI>)
 
 ```q
