@@ -36,7 +36,7 @@ r:restapi[settings\`apiHost;"GET";"/api/v1/user/walletSummary";"";settings\`apiK
 ### /wsapi: connect to websocket: Not authenticating when apiKey or apiSecret = ""
 wsapi[host;apiKey;apiSecret]
 
-### /wsapi_cmd: wshandle: the first element returned from wsapi[...], command: a dict for command args ex.\`op\`args!(`subscribe;enlist\`$"trade:XBTUSD")
+### /wsapi_cmd:   wshandle: the first element returned from wsapi[...], command: a dict for command args, ex: \`op\`args!(`subscribe;enlist \`$"trade:XBTUSD")
 wsapi_cmd[wshandle;command]
 
 ### /subscribe:  r:wsapi[settings\`apiHost; settings\`apiKey; settings\`apiSecret];  wsapi_sub[first[r];"trade:XBTUSD"]
@@ -51,22 +51,42 @@ wsapi_ping[wshandle]
 ### WebSocket API examples:
 ####  /subscribe trade
 trade:([]timestamp:\`timestamp$();price:\`float$();size:\`float$());
-.z.ws:{xx::.j.k[x];if[key[xx]~\`table\`action\`data;if[xx[`action]~"insert";\`trade insert select ltime\`timestamp$"Z"$timestamp,\`float$price,\`float$size from xx[\`data] ]];};
+
+.z.ws:{xx::.j.k[x];if[key[xx]~\`table\`action\`data;
+	if[xx[`action]~"insert"; \`trade insert select ltime\`timestamp$"Z"$timestamp,\`float$price,\`float$size from xx[\`data] ]];
+	};
+
 wsh:wsapi[settings\`apiHost; settings\`apiKey; settings\`apiSecret];  
+
 wsapi_sub[first[wsh];"trade:XBTUSD"]
+
 wsapi_unsub[first[wsh];"trade:XBTUSD"]
 
 #### /Heartbeats: https://www.bitmex.com/app/wsAPI#Heartbeats
+
 wsapi_dt:.z.P;
+
 WS:([]time:\`time$();data:());
-.z.ws:{wsapi_dt::.z.P;\`WS insert (.z.T;x);0N!(.z.T;.z.w)};
+
+.z.ws:{wsapi_dt::.z.P; \`WS insert (.z.T;x);0N!(.z.T;.z.w)};
+
 wsh:wsapi[settings\`apiHost; settings\`apiKey; settings\`apiSecret];  
+
 wsapi_sub[first[wsh];"trade:XBTUSD"];
+
 .z.ts:{if[00:00:05<.z.P-wsapi_dt; @[wsapi_ping;first wsh;\`]];
+
     if[00:00:05<.z.P-wsapi_dt;
+	
 		@[hclose;first[wsh];\`];
+		
         wsh::.[wsapi;(settings\`apiHost;settings\`apiKey;settings\`apiSecret);\`];
+		
         if[0<first wsh;.[wsapi_sub;(first[wsh];"trade:XBTUSD");\`];wsapi_dt::.z.P];
+		
         0N!(.z.Z;first[wsh];\`reconnected);
+		
 	  ];};
+
 system"t 1000";
+
