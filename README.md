@@ -7,7 +7,9 @@ kdb+/q interface for BitMex API (REST and WebSocket)
 ## 0.1 implementation of HMACSHA256  
 
 For Windows, use qx.dll or build DLLs. For Linux, build shared objects.
+
 <https://github.com/ogay/hmac>  
+
 <https://github.com/bitmx/btceQ/blob/master/c/hmac512.cpp>
 
 ## 0.2 load the functions
