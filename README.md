@@ -14,8 +14,9 @@ For Windows, use qx.dll or build DLLs. For Linux, build shared objects.
 
 ## 0.2 load the functions
 
-c:>set SSL_VERIFY_SERVER=NO       (linux: export ...)
-c:>q qbitmex.q
+c:\>set SSL_VERIFY_SERVER=NO       (linux: export ...)
+
+c:\>q qbitmex.q
 
 ## 0.3 settings: apiHost,apiKey,apiSecret
 ```q
