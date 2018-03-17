@@ -13,9 +13,9 @@ For Windows, use qx.dll or build DLLs. For Linux, build shared objects.
 <https://github.com/bitmx/btceQ/blob/master/c/hmac512.cpp>
 
 ## 0.2 load the functions
-```q
-\l qbitmex.q
-```
+
+c:>set SSL_VERIFY_SERVER=NO       (linux: export ...)
+c:>q qbitmex.q
 
 ## 0.3 settings: apiHost,apiKey,apiSecret
 ```q
