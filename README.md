@@ -12,6 +12,8 @@ For Windows, use qx.dll or build DLLs. For Linux, build shared objects.
 
 <https://github.com/bitmx/btceQ/blob/master/c/hmac512.cpp>
 
+or use CryptoQ : https://github.com/asatirahul/cryptoq  (2019.05)
+
 ## 0.2 load the functions
 
 c:\>set SSL_VERIFY_SERVER=NO       (linux: export ...)
